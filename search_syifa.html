@@ -16,7 +16,7 @@
           <a class="nav-link" href="home.html">
             <i class="bi bi-house-door"></i>
           </a>
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link active" aria-current="page"  href="#">
             <i class="bi bi-search"></i>
           </a>
           <a class="nav-link" href="perpus.html">
@@ -31,6 +31,14 @@
         </a>
 
         <i class="bi bi-moon"></i>
+
+        <div class="dropdown-menu">
+          <a href="">Lihat Profil</a>
+          <hr>
+          <a href="buatcerita.html">Buat Cerita</a>
+          <a href="">Pengaturan</a>
+          <a href="">Logout</a>
+        </div>
       </div>
     </header>
 
@@ -43,13 +51,22 @@
                     <option>Semua Genre</option>
                     <option>Romantis</option>
                     <option>Fantasi</option>
+                    <option>Horror</option>
+                    <option>Thriller</option>
+                    <option>Fiksi penggemar</option>
                 </select>
                 <select class="tag">
-                    <option>Semua Tag</option>
+                    <option>Semua</option>
+                    <option>Penulis</option>
+                    <option>Cerita</option>
                 </select>
             </div>
 
             <div>
+              <select class="status">
+                <option>On Going</option>
+                <option>Complete</option>
+              </select>
                 <select class="sortir">
                     <option>Sortir: Populer</option>
                     <option>Sortir: Terbaru</option>
@@ -58,5 +75,12 @@
         </div>
     </div>
     
+    <script>
+        document.querySelector('.profile').addEventListener('click', function(e) {
+          e.preventDefault(); 
+
+          document.querySelector('.dropdown-menu').classList.toggle('active');
+      });
+    </script>
 </body>
 </html>
