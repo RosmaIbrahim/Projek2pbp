@@ -26,10 +26,18 @@
 
       <div class="kanan">
         <a class="profile" href="#">
-          <img src="https://i.pravatar.cc/50" alt="user">
+          <img src="profile.jpg" alt="user">
         </a>
 
         <i class="bi bi-moon"></i>
+
+        <div class="dropdown-menu">
+          <a href="">Lihat Profil</a>
+          <hr>
+          <a href="buatcerita.html">Buat Cerita</a>
+          <a href="">Pengaturan</a>
+          <a href="">Logout</a>
+        </div>
       </div>
     </header>
 
@@ -37,13 +45,13 @@
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="carousel 1.jpg" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="carousel 2.jpg" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="carousel 3.jpg" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -61,34 +69,39 @@
       <h2>Rekomendasi</h2>
 
       <div class="recom-isi">
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+
+        <div class="card" data-link="cerita1.html">
+            <img src="seporsi mie ayam.jpg" class="card-img" alt="...">
         </div>
 
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card" data-link="cerita2.html">
+            <img src="cantik itu luka.jpg" class="card-img" alt="...">
         </div>
 
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card" data-link="cerita3.html">
+            <img src="laut bercerita.jpg" class="card-img" alt="...">
         </div>
 
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-        </div>
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-        </div>
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-        </div>
       </div>
     </div>
 
-    <script>
-</script>
 
+    <script>
+      document.querySelectorAll(".card").forEach(card => {
+        card.addEventListener("click", function() {
+          const link = this.getAttribute("data-link");
+          window.location.href = link;
+        });
+      });
+    </script>
+
+    <script>
+        document.querySelector('.profile').addEventListener('click', function(e) {
+          e.preventDefault(); 
+
+          document.querySelector('.dropdown-menu').classList.toggle('active');
+      });
+    </script>
+    
   </body>
 </html>
