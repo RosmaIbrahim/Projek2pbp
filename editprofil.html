@@ -4,81 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profil - CeritaQu</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css"> 
-</head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 sm:p-6">
 
-    <div class="w-full max-w-xl">
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-200">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-center mb-6 text-red-600">Edit Profil</h2>
-            <p class="text-center text-gray-500 mb-6">Perbarui informasi akun Anda di sini.</p>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Gunakan Inter
+                    },
+                    colors: {
+                        // Palet Warna Konsisten
+                        'primary-text': '#241b00',      
+                        'secondary-text': '#797772',    
+                        'border-default': '#e2e2e2',    
+                        
+                        // Palet Tombol/Aksen
+                        'cta-main': '#FA812F',          // Oranye Gelap
+                        'cta-hover': '#FFB22C',         // Oranye Kuning Terang
+                        // Warna Hijau untuk 'Simpan' diubah ke CTA utama (Oranye)
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white flex items-center justify-center min-h-screen font-sans p-8"> 
+
+    <div class="w-full max-w-xl"> 
+        <div class="bg-white p-8 rounded-2xl shadow-xl border border-border-default">
             
-            <form action="update-profile" method="POST">
+            <h2 class="text-3xl font-extrabold text-center mb-2 text-primary-text">Edit Profil</h2>
+            <p class="text-center text-secondary-text mb-6">Perbarui informasi akun Anda di sini.</p>
+
+            <form action="update_profile" method="POST">
                 
                 <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-semibold mb-2">Nama Lengkap/Username</label>
+                    <label for="name" class="block text-primary-text font-semibold mb-2">Nama Lengkap/Username</label>
                     <input 
                         type="text" 
                         id="name" 
                         name="name" 
-                        value="Nama Pengguna Keren"
                         placeholder="Masukkan nama Anda" 
-                        class="w-full p-3 border border-gray-300 rounded-lg 
-                                transition duration-500  
-                                hover:border-red-300 
-                                hover:ring hover:ring-red-300/50 /* Efek glow/blur */
-                                focus:outline-none   
-                                focus:shadow-none 
-                                focus:border-red-500 
-                                focus:border-2       
+                        value="Nama Pengguna"
+                        class="w-full p-3 border border-border-default rounded-lg 
+                                transition duration-300 
+                                hover:border-cta-main 
+                                hover:ring hover:ring-cta-hover/50
+                                focus:outline-none 
+                                focus:border-primary-text
+                                focus:border-2 
                         " 
                         required>
                 </div>
                 
                 <div class="mb-4">
-                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <label for="email" class="block text-primary-text font-semibold mb-2">Email</label>
                     <input 
                         type="email" 
                         id="email" 
                         name="email" 
-                        value="user.keren@ceritaqu.com"
                         placeholder="contoh@email.com" 
-                        class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 cursor-not-allowed
-                                transition duration-500
-                                focus:outline-none 
-                                focus:shadow-none 
+                        value="contoh@email.com"
+                        class="w-full p-3 border border-border-default rounded-lg 
+                                bg-border-default cursor-not-allowed 
+                                text-secondary-text
                         " 
-                        readonly> </div>
+                        readonly>
+                </div>
                 
                 <div class="mb-6">
-                    <label for="about" class="block text-gray-700 font-semibold mb-2">Tentang Saya</label>
+                    <label for="about" class="block text-primary-text font-semibold mb-2">Tentang Saya</label>
                     <textarea 
                         id="about" 
                         name="about" 
-                        rows="4"
-                        placeholder="Tulis sedikit tentang diri Anda" 
-                        class="w-full p-3 border border-gray-300 rounded-lg 
-                                transition duration-500
-                                hover:border-red-300
-                                hover:ring hover:ring-red-300/50 /* Efek glow/blur */
+                        rows="4" 
+                        placeholder="Tulis sedikit tentang diri Anda..." 
+                        class="w-full p-3 border border-border-default rounded-lg 
+                                transition duration-300 resize-none
+                                hover:border-cta-main
+                                hover:ring hover:ring-cta-hover/50
                                 focus:outline-none 
-                                focus:shadow-none 
-                                focus:border-red-500
+                                focus:border-primary-text
                                 focus:border-2 
-                        ">Penulis cerita fiksi ilmiah dan fantasi. Suka kopi dan hujan. Mari berpetualang lewat kata-kata!
-                    </textarea>
+                        ">Penulis cerita fiksi ilmiah dan fantasi.</textarea>
                 </div>
-
-                <button type="submit" class="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition duration-200 cursor-pointer flex items-center justify-center shadow-md">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
-                    Simpan Perubahan
+                
+                <button type="submit" class="w-full bg-cta-main text-primary-text p-3 rounded-lg font-bold hover:bg-cta-hover transition duration-200 cursor-pointer shadow-md flex items-center justify-center">
+                     Simpan Perubahan
                 </button>
             </form>
 
             <div class="mt-4 text-center text-sm">
-                <a href="profiluser.html" class="text-red-600 hover:underline font-medium">Batalkan dan Kembali ke Profil</a>
+                <a href="profiluser.html" class="text-cta-main hover:text-primary-text font-medium hover:underline transition duration-200">
+                    Batalkan dan Kembali ke Profil
+                </a>
             </div>
+            
         </div>
     </div>
 </body>
