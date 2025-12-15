@@ -20,11 +20,11 @@
                         sans: ['Poppins', 'sans-serif'], 
                     },
                     colors: {
-                        // Palet Warna Utama (Sama seperti sebelumnya)
-                        'primary-color': '#FA812F',     
-                        'primary-text': '#241b00',      
-                        'secondary-text': '#797772',    
-                        'border-default': '#e2e2e2',    
+                        // Palet Warna Utama
+                        'primary-color': '#FA812F', 
+                        'primary-text': '#241b00',
+                        'secondary-text': '#797772',
+                        'border-default': '#e2e2e2',
                         'cta-main': '#FA812F', 
                         'cta-hover': '#e6742a', 
                         
@@ -39,6 +39,15 @@
             }
         }
     </script>
+    <style>
+        /* Custom styling untuk tombol batalkan outline di Dark Mode */
+        .btn-cancel-outline:hover {
+            background-color: rgba(250, 129, 47, 0.1); /* cta-main/10 */
+        }
+        .dark .btn-cancel-outline:hover {
+            background-color: #333333; /* dark-border */
+        }
+    </style>
 </head>
 <body class="bg-gray-50 dark:bg-dark-bg font-sans min-h-screen transition-colors duration-300">
     
@@ -66,7 +75,7 @@
         </div>
 
         <div class="flex items-center">
-            <a href="home.html" class="bg-primary-color text-white font-semibold text-sm h-9 w-24 flex items-center justify-center rounded-md transition duration-200 hover:bg-cta-hover hover:text-white">
+            <a href="home.html" class="btn-cancel-outline border border-cta-main text-cta-main dark:text-cta-main font-semibold text-sm h-9 w-24 flex items-center justify-center rounded-md transition duration-200 hover:bg-cta-main/10 dark:hover:bg-dark-border/50 hover:shadow-sm">
                 Batalkan
             </a>
         </div>
@@ -82,12 +91,23 @@
 
                 <div>
                     <label for="formFile" class="block text-sm font-medium text-primary-text dark:text-dark-text mb-1">Tambahkan sampul buku</label>
-                    <input class="block w-full text-sm text-primary-text dark:text-dark-text file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-color file:text-white hover:file:bg-cta-hover file:transition file:duration-200 dark:file:bg-primary-color dark:file:text-white dark:file:hover:bg-cta-hover cursor-pointer border border-border-default dark:border-dark-border/50 rounded-lg p-2 bg-gray-100 dark:bg-dark-border/50" type="file" id="formFile">
+                    <input class="block w-full text-sm text-primary-text dark:text-dark-text 
+                                file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold 
+                                file:bg-primary-color file:text-white hover:file:bg-cta-hover file:transition file:duration-200 
+                                dark:file:bg-primary-color dark:file:text-white dark:file:hover:bg-cta-hover 
+                                cursor-pointer border border-border-default dark:border-dark-border/50 rounded-lg p-2 bg-gray-100 dark:bg-dark-border/50" 
+                                type="file" id="formFile">
                 </div>
 
                 <div>
                     <label for="judul" class="block text-sm font-medium text-primary-text dark:text-dark-text mb-1">Judul</label>
-                    <input type="text" id="judul" placeholder="Cerita Tak Berjudul" class="w-full px-3 py-2 text-sm rounded-lg border border-border-default dark:border-dark-border/50 focus:ring-primary-color focus:border-primary-color dark:bg-dark-bg dark:text-dark-text dark:placeholder-dark-secondary-text transition duration-200">
+                    <input type="text" id="judul" placeholder="Cerita Tak Berjudul" 
+                           class="w-full px-3 py-2 text-sm rounded-lg border border-border-default dark:border-dark-border/50 
+                                  dark:bg-dark-bg dark:text-dark-text dark:placeholder-dark-secondary-text 
+                                  
+                                  transition duration-300 ease-in-out 
+                                  hover:border-cta-main dark:hover:border-cta-main 
+                                  focus:outline-none focus:border-cta-main focus:ring-2 focus:ring-cta-main/50">
                 </div>
 
                 <div>
@@ -110,7 +130,13 @@
                 
                 <div>
                     <label for="deskripsi" class="block text-sm font-medium text-primary-text dark:text-dark-text mb-1">Deskripsi</label>
-                    <textarea id="deskripsi" class="w-full h-36 p-3 text-sm rounded-lg border border-border-default dark:border-dark-border/50 focus:ring-primary-color focus:border-primary-color resize-none dark:bg-dark-bg dark:text-dark-text dark:placeholder-dark-secondary-text transition duration-200"></textarea>
+                    <textarea id="deskripsi" 
+                              class="w-full h-36 p-3 text-sm rounded-lg border border-border-default dark:border-dark-border/50 
+                                     resize-none dark:bg-dark-bg dark:text-dark-text dark:placeholder-dark-secondary-text 
+                                     
+                                     transition duration-300 ease-in-out 
+                                     hover:border-cta-main dark:hover:border-cta-main 
+                                     focus:outline-none focus:border-cta-main focus:ring-2 focus:ring-cta-main/50"></textarea>
                 </div>
                 
                 <div class="pt-2">
@@ -128,30 +154,24 @@
         const dropdownToggle = document.getElementById('genre-toggle');
         const dropdownMenu = document.getElementById('genre-menu');
         
-        // Fungsi untuk menutup menu dropdown
         function closeDropdown() {
             dropdownMenu.classList.add('hidden');
         }
 
-        // 1. Toggle saat tombol diklik
         dropdownToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Mencegah event mencapai body/document
+            e.stopPropagation();
             dropdownMenu.classList.toggle('hidden');
         });
 
-        // 2. Tutup saat mengklik di luar menu
         document.addEventListener('click', (e) => {
             if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 closeDropdown();
             }
         });
         
-        // 3. Tutup saat item dipilih (opsional, tapi disarankan)
         const dropdownItems = dropdownMenu.querySelectorAll('a');
         dropdownItems.forEach(item => {
             item.addEventListener('click', (e) => {
-                // Opsional: Anda bisa memperbarui teks tombol di sini
-                // dropdownToggle.querySelector('span').textContent = e.target.textContent; 
                 closeDropdown();
             });
         });
